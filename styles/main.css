@@ -125,6 +125,14 @@ h1{
    color: #174b00;
 }
 
+.invalid{
+	color: red;
+	font-size: 12px;
+	margin-left: 40px;
+}
+
+.hide{display: none;}
+
 @media screen and (max-width: 600px){
 	h1{
 		font-size: 30px;

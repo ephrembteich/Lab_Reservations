@@ -18,10 +18,20 @@ function centerContainer(){
 
 $(function() {
     $(".submit-button").click(function() {
-		if($("input[name='name']")[0].value.match(/^[a-zA-Z]{2,3}[0-9]{2}$/i)){
-			return true;
+		var invalid = true;
+		if(!$("input[name='name']")[0].value.match(/^[a-zA-Z]{2,3}[0-9]{2}$/i)){
+			invalid = false;
+			$("#invalidName").removeClass('hide');
 		}
-		console.log("do not match");
-		return false;
+		else{
+			$("#invalidName").addClass('hide');
+		}
+		if($("input[name='password']")[0].value.length<5){
+			invalid = false;
+			$("#invalidPass").removeClass('hide');
+		}else{
+			$("#invalidPass").addClass('hide');
+		}
+		return invalid;
 	});
 });
