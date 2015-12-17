@@ -1,17 +1,27 @@
 body{
+	margin: 0;
+	font-family: Helvetica, Georgia, serif;
+}
+
+.main{
+	background-color: #F2F5F8;
+}
+
+.signup{
 	background: -webkit-radial-gradient(circle, #F2F5F8, #E3E5F4);
 	background: -o-radial-gradient(circle, #F2F5F8, #E3E5F4);
 	background: -moz-radial-gradient(circle, #F2F5F8, #E3E5F4);
 	background: radial-gradient(circle, #F2F5F8, #E3E5F4);
 }
 
-h1{
-	text-shadow: #ecf8fe 0 1px 0;
+.signup h1{
 	color: #3f85ab;
-	font-weight:bold;
-	text-align:center;
 	font-size: 40px;
 	margin: 30px auto;
+}
+
+.signup h1, .form-container h2{
+	text-shadow: #ecf8fe 0 1px 0;
 }
 
 .form-container {
@@ -57,11 +67,8 @@ h1{
 }
 
 .form-container h2 {
-   text-shadow: #ecf8fe 0 1px 0;
    font-size:22px;
    margin: 0 0 10px 0;
-   font-weight:bold;
-   text-align:center;
 }
 
 .form-title {
@@ -132,6 +139,180 @@ h1{
 }
 
 .hide{display: none;}
+
+.menu{
+	height: 50px;
+}
+
+.title{
+	width: 480px;
+	float: left;
+	font-size: 32px;
+	line-height: 50px;
+	background-color: #5BC4EB;
+	cursor: default;
+}
+
+.leftmenu{
+	width: auto;
+	height: 50px;
+	float: left;
+	background-color: #fff;
+	border-bottom: 1px solid #E3E8F0;
+}
+
+.welcome{
+	float: right;
+	font-size: 18px;
+	padding-right: 20px;
+	padding-left: 20px;
+	line-height: 49px;
+	border-left: 1px solid #E3E8F0;
+	cursor: default;
+}
+
+.signout{
+	float: right;
+	height: 50px;
+	padding-right: 20px;
+	padding-left: 20px;
+	border-left: 1px solid #E3E8F0;
+}
+
+.signout button{
+	margin-top: 8px;
+}
+
+.schedule{
+	margin: 40px 20px;
+	border: 1px solid #C1D2DB;
+}
+
+.mybtn{
+	border: none;
+	margin: 0;
+	padding: 0;
+	width: 100px;
+	height: 34px;
+	outline: none;
+}
+
+#weekltbtn{
+	background-color: #97D35A;
+	border-radius: 20px 0 0 20px;
+	-moz-border-radius: 20px 0;
+}
+
+#monthlybtn{
+	background-color: #8F9EAC;
+	margin-left: -4px;
+	border-radius: 0 20px 20px 0;
+	-moz-border-radius: 20px 0;
+}
+
+#schedtable > thead{
+	background-color: white;
+	border-bottom: 1px solid #C1D2DB;
+}
+
+#schedtable > thead > tr > th{
+	height: 50px;
+	width: 180px;
+	text-align: center;
+}
+
+#schedtable > tbody > tr > td{
+	vertical-align: top;
+}
+
+#btnth{
+	width: 244px !important;
+}
+
+.tabletitle{
+	width: 244px;
+	height: 34px;
+	line-height: 34px;
+	background-color: #E1E8EC;
+	color: #728398;
+	border-bottom: 1px solid #C1D2DB;
+}
+
+#calendar{
+	background-color: #F0F4F7;
+	padding: 6px 10px;
+}
+
+#calendar th, #calendar td{
+	text-align: center;
+}
+
+#inject{
+	width: auto;
+    height: 396px;
+}
+
+.celltitle{
+	color: #91C75A;
+}
+.centerVH{
+	vertical-align: center;
+}
+.width32{width: 32px;}
+.width160{width: 160px;}
+.width224{width: 224px;}
+.height28{height: 28px;}
+.height32{height: 32px;}
+.height50{height: 50px;}
+.daycolor{color: #9EA8B6;}
+.daycolor2{color: #5D6D84;}
+.pointer{cursor: pointer;}
+.bold{font-weight: bold;}
+.txtaligncenter{text-align: center;}
+.defaultcursor{cursor: default;}
+.hidden{display: none;}
+.color60C4E9{color:#60C4E9;}
+.colorwhite{color:white;}
+
+.tdstyle{
+	padding: 0 8px;
+	-webkit-border-radius: 40px; 
+    -moz-border-radius: 40px;
+	border-radius: 40px;
+}
+
+.tdstyle:hover{
+	background-color: #D0D5D8;
+}
+
+#tdcoloring{
+	background-color: #60C4E9;
+	color: white;
+}
+
+#weekdays{
+	color: #828C99;
+}
+
+#weekdayssmall{
+	border-bottom: 1px solid #C1D2DB;
+	border-top: 1px solid #C1D2DB;
+}
+
+#showCurrentDate{
+	color: #728398;
+	-webkit-border-radius: 30px; 
+    -moz-border-radius: 30px;
+	border-radius: 30px;
+}
+
+#showCurrentDate:hover{
+	background-color: #E1E8EC;
+}
+
+@media screen and (max-width: 834px){
+
+}
 
 @media screen and (max-width: 600px){
 	h1{
