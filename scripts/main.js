@@ -3,6 +3,7 @@ onload = initializeComponents;
 function initializeComponents(){
 	$(window).resize(responsive);
 	initializeCalendar();
+	showWeekly();
 	$("#weekltbtn").click(function(){
 		$("#weekltbtn").css({"backgroundColor":"#97D35A"});
 		$("#monthlybtn").css({"backgroundColor":"#8F9EAC"});
@@ -20,11 +21,13 @@ function responsive(){
 }
 
 function showWeekly(){
-	
+	$("#inject").attr("class", "");
+	$("#monthlyview").attr("class","hidden");
+	$("#maintable").attr("class","");
 }
 
 function showMonthly(){
-	var secdiv = $("div", {"margin": "auto", "text": "Monthly View is not ready yet."});
-	$("#inject").append(secdiv);
-	console.debug(secdiv.text);
+	$("#inject").attr("class", "maincells");
+	$("#maintable").attr("class","hidden");
+	$("#monthlyview").attr("class","");
 }

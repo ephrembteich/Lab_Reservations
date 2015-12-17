@@ -26,7 +26,7 @@ var daysInMonth = [31,28,31,30,31,30,31,31,30,31,30,31];
 var monthNames = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
 ];
-
+var days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
 
 function changedate(buttonpressed) {
 	$("tr").remove(".rmv");
@@ -77,17 +77,20 @@ function createCalendar() {
 			for (var x = 1; x <= 7; x++) {
 				if (daycounter+1 > daysInMonth[monthNum-1]){
 					bool=false;
-					break;
+					//break;
 				}
 				daycounter = (thisDate - firstDay)+1;
 				thisDate++;
-				if ((daycounter > numbDays) || (daycounter < 1)) {
+				if ((daycounter > numbDays) || (daycounter < 1) || (daycounter>daysInMonth[monthNum-1])) {
 					var td = $("<td>", {"class": "daycolor width32 centerVH height28 defaultcursor"});
 					tr.append(td);
 				} else {
 					var td = $("<td>", {"class": "daycolor width32 centerVH height28 tdstyle pointer", "text":daycounter});
 					if(x!=1){
 						td.click(changeColor);
+					}
+					if(todaysDate==daycounter){
+						td.attr("id", "today");
 					}
 					tr.append(td);
 				}
@@ -96,6 +99,7 @@ function createCalendar() {
 		}
 	}
 	thisDate = 1;
+	updateWeekdays($("#today"));
 }
 
 function changeColor(){
@@ -106,18 +110,37 @@ function changeColor(){
 		$("#tbr").attr("class", "daycolor2 centerVH width32 height32");
 		$("#tbr").attr("id", "");
 	}
-	if($("#daytbr")){
-		$("#daytbr").attr("class", "");
-		$("#daytbr").find("span").attr("class", "hidden");
-		$("#daytbr").attr("id", "");
-	}
+	
 	$(event.target).attr("id", "tdcoloring");
 	var dayIndex = $(event.target).index();
 	var day = $("#caltable tr").eq(1).find("td").eq(dayIndex);
 	day.attr("class", day.attr("class")+" color60C4E9");
 	day.attr("id", "tbr");
-	var weekday = $("#weekdays th").eq(dayIndex);
-	weekday.attr("class", weekday.attr("class")+" color60C4E9");
-	weekday.find("span").attr("class", "");
-	weekday.attr("id", "daytbr");
+	updateWeekdays($(event.target));
+}
+
+function updateWeekdays(target){
+	if($("#daytbr")){
+		$("#daytbr").attr("class", "");
+		$("#daytbr").attr("id", "");
+	}
+	if($("#tbrborder")){
+		$("#tbrborder").attr("id", "");
+	}
+	
+	var p = target.parent().find("td");
+	var weekday = $("#weekdays th");
+	for(var i=1; i<p.length; i++){
+		if(p.eq(i).html()!=""){
+			weekday.eq(i).html(weekday.eq(i).attr("value")+" "+monthNum+"-"+p.eq(i).html());
+		}else{
+			weekday.eq(i).html(weekday.eq(i).attr("value"));
+		}
+		if(p.eq(i).html()==target.html()){
+			weekday.eq(i).html(weekday.eq(i).html()+" (TODAY)");
+			weekday.eq(i).attr("class", weekday.eq(i).attr("class")+" color60C4E9");
+			weekday.eq(i).attr("id", "daytbr");
+			$("#8 [name="+(days[weekday.eq(i).index()-1])+"]").attr("id", "tbrborder");
+		}
+	}
 }

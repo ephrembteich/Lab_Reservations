@@ -169,6 +169,7 @@ body{
 	line-height: 49px;
 	border-left: 1px solid #E3E8F0;
 	cursor: default;
+	color: #6D737A;
 }
 
 .signout{
@@ -263,6 +264,7 @@ body{
 .width224{width: 224px;}
 .height28{height: 28px;}
 .height32{height: 32px;}
+.height38{height: 38px;}
 .height50{height: 50px;}
 .daycolor{color: #9EA8B6;}
 .daycolor2{color: #5D6D84;}
@@ -283,6 +285,10 @@ body{
 
 .tdstyle:hover{
 	background-color: #D0D5D8;
+}
+
+.maincells{
+	border-left: 1px solid #C1D2DB;
 }
 
 #tdcoloring{
@@ -308,6 +314,25 @@ body{
 
 #showCurrentDate:hover{
 	background-color: #E1E8EC;
+}
+
+#tbrborder{
+	border-top: 3px solid #60C4E9;
+}
+
+#monthlyview{
+	font-size: 24px;
+    text-align: center;
+	margin-top: 160px;
+}
+
+#maintable{
+	width: 100%;
+	background: repeating-linear-gradient(
+	  -45deg,
+	  #EFEFEF 1px,
+	  #F9F9F9 5px
+	);
 }
 
 @media screen and (max-width: 834px){
