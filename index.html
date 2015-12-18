@@ -11,16 +11,16 @@
 	</head>
 	<body class="signup">
 		<h1 class="bold txtaligncenter">Bliss Labs Reservation System</h1>
-		<form class="form-container" method="post" action="main.html">
+		<form id="form" class="form-container" method="post" action="main.html">
 			<div class="form-title">
 				<h2 class="bold txtaligncenter">Sign In</h2>
 			</div>
-			<div class="form-title" id="field1">Username<span id="invalidName" class="invalid hide">*Invalid Username</span></div>
-			<input class="form-field" type="text" name="name" maxlength="5"/><br />
-			<div class="form-title" id="field2">Password<span id="invalidPass" class="invalid hide">*Invalid Password</span></div>
-			<input class="form-field" type="password" name="password"/><br />
+			<div class="form-title" id="field1">Username<span id="invalidName" class="invalid hidden">*Invalid Username</span></div>
+			<input id="name" class="form-field" type="text" name="name" maxlength="5"/><br />
+			<div class="form-title" id="field2">Password<span id="invalidPass" class="invalid hidden">*Invalid Password</span></div>
+			<input id="password" class="form-field" type="password" name="password"/><br />
 			<div class="submit-container">
-			<input class="submit-button colorwhite" type="submit" value="Submit"/>
+			<input id="submit" class="submit-button colorwhite" type="submit" value="Submit"/>
 			</div>
 		</form>
 	</body>

@@ -21,17 +21,53 @@ $(function() {
 		var invalid = true;
 		if(!$("input[name='name']")[0].value.match(/^[a-zA-Z]{2,3}[0-9]{2}$/i)){
 			invalid = false;
-			$("#invalidName").removeClass('hide');
+			$("#invalidName").removeClass('hidden');
 		}
 		else{
-			$("#invalidName").addClass('hide');
+			$("#invalidName").addClass('hidden');
 		}
 		if($("input[name='password']")[0].value.length<5){
 			invalid = false;
-			$("#invalidPass").removeClass('hide');
+			$("#invalidPass").removeClass('hidden');
 		}else{
-			$("#invalidPass").addClass('hide');
+			$("#invalidPass").addClass('hidden');
+		}
+		
+		if(invalid){
+			invalid = validateCredentials();
 		}
 		return invalid;
 	});
 });
+
+function validateCredentials(){
+	var params = "name="+$("#name").val()+"&password="+$("#password").val();
+
+	try{
+		var async = new XMLHttpRequest();
+		async.onload = function () {
+			if (async.readyState==4 && async.status == 200){
+				if(async.responseText=="true"){
+					$("#invalidName").addClass('hidden');
+					$("#invalidPass").addClass('hidden');
+				}else if(async.responseText=="user"){
+					$("#invalidName").removeClass('hidden');
+				}else if(async.responseText=="pass"){
+					$("#invalidPass").removeClass('hidden');
+				}
+			}
+		}
+		async.open("post", "login.php", false);
+		async.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		async.send(params);
+	}catch(exception){
+		alert(exception+" Request Failed. Please try again.");
+	}
+	
+	if($("#invalidName").hasClass("hidden") && $("#invalidPass").hasClass("hidden")){
+		$("#form").attr("action", "main.html?"+$("#name").val());
+		return true;
+	}else{
+		return false;
+	}
+}

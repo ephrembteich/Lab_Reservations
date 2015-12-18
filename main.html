@@ -21,7 +21,7 @@
 				<div class="signout">
 					<button class="btn btn-success" type="submit">Sign Out</button>
 				</div>
-				<div class="welcome">Hello, Ephrem Bteich!</div>
+				<div id="username" class="welcome"></div>
 			</div>
 		</div>
 		
@@ -33,6 +33,7 @@
 							<button id="weekltbtn" class="mybtn colorwhite">Weekly view</button>
 							<button id="monthlybtn" class="mybtn colorwhite">Monthly view</button>
 						</th>
+						<th class="width80"><div class="width80"></div></th>
 						<th value="MON">MON </th>
 						<th value="TUE">TUE </th>
 						<th value="WED">WED </th>
@@ -75,110 +76,122 @@
 								</table>
 							</div>
 							<div id="labs">
-							  <button type="button" class="btn bgcolor5BC4EB colorwhite">Bliss 114</button>
-							  <button type="button" class="btn bgcolorF49494 colorwhite">Bliss 208</button>
-							  <button type="button" class="btn bgcolor97D35A colorwhite">Bliss 209</button>
-							  <button type="button" class="btn bgcolorD8A200 colorwhite">Bliss 210</button>
+							  <button type="button" class="btn bgcolor5BC4EB colorwhite" onClick="getWeekReservations('Bliss 114')">Bliss 114</button>
+							  <button type="button" class="btn bgcolorF49494 colorwhite" onClick="getWeekReservations('Bliss 208')">Bliss 208</button>
+							  <button type="button" class="btn bgcolor97D35A colorwhite" onClick="getWeekReservations('Bliss 209')">Bliss 209</button>
+							  <button type="button" class="btn bgcolorD8A200 colorwhite" onClick="getWeekReservations('Bliss 210')">Bliss 210</button>
 							</div>
 						</td>
-						<td id="inject" colspan="6">
+						<td id="inject" colspan="7">
 							<table id="maintable">
 								<tbody>
 									<tr id="8">
-										<td name="monday" class="height38 maincells"></td>
-										<td name="tuesday" class="height38 maincells"></td>
-										<td name="wednesday" class="height38 maincells"></td>
-										<td name="thursday" class="height38 maincells"></td>
-										<td name="friday" class="height38 maincells"></td>
-										<td name="saturday" class="height38 maincells"></td>
+										<td class="maincells width80 color728398 txtaligncenter color728398 txtaligncenter">8:00 AM</td>
+										<td name="monday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="tuesday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="wednesday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="thursday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="friday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="saturday" class="height38 maincells" onClick="reserve(this)"></td>
 									</tr>
 									<tr id="9">
-										<td name="monday" class="height38 maincells"></td>
-										<td name="tuesday" class="height38 maincells"></td>
-										<td name="wednesday" class="height38 maincells"></td>
-										<td name="thursday" class="height38 maincells"></td>
-										<td name="friday" class="height38 maincells"></td>
-										<td name="saturday" class="height38 maincells"></td>
+										<td class="maincells width80 color728398 txtaligncenter">9:00 AM</td>
+										<td name="monday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="tuesday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="wednesday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="thursday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="friday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="saturday" class="height38 maincells" onClick="reserve(this)"></td>
 									</tr>
 									<tr id="10">
-										<td name="monday" class="height38 maincells"></td>
-										<td name="tuesday" class="height38 maincells"></td>
-										<td name="wednesday" class="height38 maincells"></td>
-										<td name="thursday" class="height38 maincells"></td>
-										<td name="friday" class="height38 maincells"></td>
-										<td name="saturday" class="height38 maincells"></td>
+										<td class="maincells width80 color728398 txtaligncenter">10:00 AM</td>
+										<td name="monday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="tuesday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="wednesday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="thursday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="friday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="saturday" class="height38 maincells" onClick="reserve(this)"></td>
 									</tr>
 									<tr id="11">
-										<td name="monday" class="height38 maincells"></td>
-										<td name="tuesday" class="height38 maincells"></td>
-										<td name="wednesday" class="height38 maincells"></td>
-										<td name="thursday" class="height38 maincells"></td>
-										<td name="friday" class="height38 maincells"></td>
-										<td name="saturday" class="height38 maincells"></td>
+										<td class="maincells width80 color728398 txtaligncenter">11:00 AM</td>
+										<td name="monday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="tuesday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="wednesday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="thursday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="friday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="saturday" class="height38 maincells" onClick="reserve(this)"></td>
 									</tr>
 									<tr id="12">
-										<td name="monday" class="height38 maincells"></td>
-										<td name="tuesday" class="height38 maincells"></td>
-										<td name="wednesday" class="height38 maincells"></td>
-										<td name="thursday" class="height38 maincells"></td>
-										<td name="friday" class="height38 maincells"></td>
-										<td name="saturday" class="height38 maincells"></td>
+										<td class="maincells width80 color728398 txtaligncenter">12:00 PM</td>
+										<td name="monday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="tuesday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="wednesday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="thursday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="friday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="saturday" class="height38 maincells" onClick="reserve(this)"></td>
 									</tr>
 									<tr id="1">
-										<td name="monday" class="height38 maincells"></td>
-										<td name="tuesday" class="height38 maincells"></td>
-										<td name="wednesday" class="height38 maincells"></td>
-										<td name="thursday" class="height38 maincells"></td>
-										<td name="friday" class="height38 maincells"></td>
-										<td name="saturday" class="height38 maincells"></td>
+										<td class="maincells width80 color728398 txtaligncenter">1:00 PM</td>
+										<td name="monday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="tuesday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="wednesday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="thursday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="friday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="saturday" class="height38 maincells" onClick="reserve(this)"></td>
 									</tr>
 									<tr id="2">
-										<td name="monday" class="height38 maincells"></td>
-										<td name="tuesday" class="height38 maincells"></td>
-										<td name="wednesday" class="height38 maincells"></td>
-										<td name="thursday" class="height38 maincells"></td>
-										<td name="friday" class="height38 maincells"></td>
-										<td name="saturday" class="height38 maincells"></td>
+										<td class="maincells width80 color728398 txtaligncenter">2:00 PM</td>
+										<td name="monday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="tuesday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="wednesday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="thursday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="friday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="saturday" class="height38 maincells" onClick="reserve(this)"></td>
 									</tr>
 									<tr id="3">
-										<td name="monday" class="height38 maincells"></td>
-										<td name="tuesday" class="height38 maincells"></td>
-										<td name="wednesday" class="height38 maincells"></td>
-										<td name="thursday" class="height38 maincells"></td>
-										<td name="friday" class="height38 maincells"></td>
-										<td name="saturday" class="height38 maincells"></td>
+										<td class="maincells width80 color728398 txtaligncenter">3:00 PM</td>
+										<td name="monday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="tuesday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="wednesday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="thursday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="friday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="saturday" class="height38 maincells" onClick="reserve(this)"></td>
 									</tr>
 									<tr id="4">
-										<td name="monday" class="height38 maincells"></td>
-										<td name="tuesday" class="height38 maincells"></td>
-										<td name="wednesday" class="height38 maincells"></td>
-										<td name="thursday" class="height38 maincells"></td>
-										<td name="friday" class="height38 maincells"></td>
-										<td name="saturday" class="height38 maincells"></td>
+										<td class="maincells width80 color728398 txtaligncenter">4:00 PM</td>
+										<td name="monday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="tuesday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="wednesday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="thursday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="friday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="saturday" class="height38 maincells" onClick="reserve(this)"></td>
 									</tr>
 									<tr id="5">
-										<td name="monday" class="height38 maincells"></td>
-										<td name="tuesday" class="height38 maincells"></td>
-										<td name="wednesday" class="height38 maincells"></td>
-										<td name="thursday" class="height38 maincells"></td>
-										<td name="friday" class="height38 maincells"></td>
-										<td name="saturday" class="height38 maincells"></td>
+										<td class="maincells width80 color728398 txtaligncenter">5:00 PM</td>
+										<td name="monday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="tuesday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="wednesday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="thursday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="friday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="saturday" class="height38 maincells" onClick="reserve(this)"></td>
 									</tr>
 									<tr id="6">
-										<td name="monday" class="height38 maincells"></td>
-										<td name="tuesday" class="height38 maincells"></td>
-										<td name="wednesday" class="height38 maincells"></td>
-										<td name="thursday" class="height38 maincells"></td>
-										<td name="friday" class="height38 maincells"></td>
-										<td name="saturday" class="height38 maincells"></td>
+										<td class="maincells width80 color728398 txtaligncenter">6:00 PM</td>
+										<td name="monday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="tuesday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="wednesday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="thursday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="friday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="saturday" class="height38 maincells" onClick="reserve(this)"></td>
 									</tr>
 									<tr id="7">
-										<td name="monday" class="height38 maincells"></td>
-										<td name="tuesday" class="height38 maincells"></td>
-										<td name="wednesday" class="height38 maincells"></td>
-										<td name="thursday" class="height38 maincells"></td>
-										<td name="friday" class="height38 maincells"></td>
-										<td name="saturday" class="height38 maincells"></td>
+										<td class="maincells width80 color728398 txtaligncenter">7:00 PM</td>
+										<td name="monday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="tuesday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="wednesday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="thursday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="friday" class="height38 maincells" onClick="reserve(this)"></td>
+										<td name="saturday" class="height38 maincells" onClick="reserve(this)"></td>
 									</tr>
 								</tbody>
 							</table>

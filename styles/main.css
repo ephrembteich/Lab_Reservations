@@ -138,8 +138,6 @@ body{
 	margin-left: 40px;
 }
 
-.hide{display: none;}
-
 .menu{
 	height: 50px;
 }
@@ -211,23 +209,8 @@ body{
 	-moz-border-radius: 20px 0;
 }
 
-#schedtable > thead{
-	background-color: white;
-	border-bottom: 1px solid #C1D2DB;
-}
-
-#schedtable > thead > tr > th{
-	height: 50px;
-	width: 180px;
-	text-align: center;
-}
-
-#schedtable > tbody > tr > td{
-	vertical-align: top;
-}
-
 #btnth{
-	width: 244px !important;
+	width: 244px;
 }
 
 .tabletitle{
@@ -260,6 +243,7 @@ body{
 	vertical-align: center;
 }
 .width32{width: 32px;}
+.width80{width: 80px !important;}
 .width160{width: 160px;}
 .width224{width: 224px;}
 .height28{height: 28px;}
@@ -274,7 +258,8 @@ body{
 .defaultcursor{cursor: default;}
 .hidden{display: none;}
 .color60C4E9{color:#60C4E9;}
-.colorwhite, .colorwhite:hover{color:white;}
+.color728398{color:#728398;}
+.colorwhite, .colorwhite:hover, .colorwhite:visited{color:white;}
 .bgcolor5BC4EB{background-color:#5BC4EB;}
 .bgcolorF49494{background-color:#F49494; }
 .bgcolor97D35A{background-color:#97D35A;}
@@ -297,6 +282,21 @@ body{
 
 .maincells{
 	border-left: 1px solid #C1D2DB;
+}
+
+#schedtable > thead{
+	background-color: white;
+	border-bottom: 1px solid #C1D2DB;
+}
+
+#schedtable > thead > tr > th{
+	height: 50px;
+	width: 180px;
+	text-align: center;
+}
+
+#schedtable > tbody > tr > td{
+	vertical-align: top;
 }
 
 #tdcoloring{
@@ -356,6 +356,7 @@ body{
 	width: 90px;
     margin-bottom: 10px;
     margin-left: 10px;
+	outline: none;
 }
 
 @media screen and (max-width: 834px){
