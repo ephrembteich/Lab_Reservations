@@ -282,6 +282,11 @@ body{
 
 .maincells{
 	border-left: 1px solid #C1D2DB;
+	border-bottom: 1px dotted #C1D2DB;
+}
+
+#r7 > td{
+	border-bottom: none;
 }
 
 #schedtable > thead{

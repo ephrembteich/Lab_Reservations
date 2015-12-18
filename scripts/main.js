@@ -1,4 +1,5 @@
 var currentLab = "";
+var requestedTitle = "";
 
 onload = initializeComponents;
 
@@ -66,28 +67,33 @@ function fillTable(data){
 			var name = data[i][j].name;
 			var title = data[i][j].title;
 			var div = $("<div>", {"html": name+", "+title});
-			$("#"+hour).find("td").index(i+1).append(div);
+			$("#r"+hour).find("td").index(i+1).append(div);
 		}
 	}
 }
 
-function reserve(ele){
-	if($(ele).find("div")){
-		alert("The lab is reserved at this time.");
+function prereserve(ele){
+	if($(ele).children().length){
+		bootbox.alert("The lab is reserved at this time.");
 	}else{
-		var title = prompt("Input the title of this reservation.");
-		var params = encodeURIComponent("name="+(location.search.substring(1))+"&title="+title+
-			"&lab="+current+"&day="+pressedDate+"&month="+monthNum+"&year="+yearNum);
-		try{
-			var async = new XMLHttpRequest();
-			async.onload = function () {
-				getWeekReservations(currentLab);
-			}
-			async.open("post", "reserve.php", true);
-			async.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			async.send(params);
-		}catch(exception){
-			alert(exception+" Request Failed. Please try again.");
+		bootbox.prompt("Input the title of this reservation.", function(result) {
+			reserve(result);
+		});
+	}
+}
+
+function reserve(title){
+	var params = encodeURIComponent("name="+(location.search.substring(1))+"&title="+title+
+		"&lab="+currentLab+"&day="+pressedDate+"&month="+monthNum+"&year="+yearNum);
+	try{
+		var async = new XMLHttpRequest();
+		async.onload = function () {
+			getWeekReservations(currentLab);
 		}
+		async.open("post", "reserve.php", true);
+		async.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		async.send(params);
+	}catch(exception){
+		alert(exception+" Request Failed. Please try again.");
 	}
 }

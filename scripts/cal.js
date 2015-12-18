@@ -142,7 +142,7 @@ function updateWeekdays(target){
 			weekday.eq(i+1).html(weekday.eq(i+1).html()+" (TODAY)");
 			weekday.eq(i+1).attr("class", weekday.eq(i+1).attr("class")+" color60C4E9");
 			weekday.eq(i+1).attr("id", "daytbr");
-			$("#8 [name="+(days[weekday.eq(i).index()-1])+"]").attr("id", "tbrborder");
+			$("#r8 [name="+(days[weekday.eq(i).index()-1])+"]").attr("id", "tbrborder");
 		}
 	}
 }

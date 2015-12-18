@@ -57,7 +57,7 @@ function validateCredentials(){
 				}
 			}
 		}
-		async.open("post", "login.php", false);
+		async.open("post", "validation.php", false);
 		async.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		async.send(params);
 	}catch(exception){
