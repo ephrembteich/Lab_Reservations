@@ -1,15 +1,6 @@
 <?php
-
-/*** first check that both the username, password have been sent ***/
-if(!isset( $_POST['name'], $_POST['password']))
-{
-    $message = 'Please enter a valid username and password';
-}
-else
-{
-
-//    $name = 'kjk03';
-//    $password = 'kareemisawesome';
+	//$name = 'kjk03';
+	//$password = 'kareemisawesome';
     /*** if we are here the data is valid and we can insert it into database ***/
     $name = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
     $password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
@@ -22,7 +13,8 @@ else
     $mysql_username = 'root';
 
     /*** mysql password ***/
-    $mysql_password = 'Kkareem_27';
+    $mysql_password = 'mypass';
+	//$mysql_password = 'Kkareem_27';
 
     /*** database name ***/
     $mysql_dbname = 'lab_reservation';
@@ -35,11 +27,14 @@ else
 
     /*** set the error mode to excptions ***/
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
+	
+	//to encode special characters
+	$name = $dbh->quote($name);
+	
     /*** check for user ***/
     $result = $dbh->query("SELECT *
                             FROM $mysql_table
-                            WHERE username = '".$name."'");
+                            WHERE username = ".$name);
 
     if ($result->rowCount() > 0) {
     //User exists
@@ -48,28 +43,13 @@ else
         $result = $result->fetchAll();
 
         if($result[0]['password'] == $password){
-            print_r("true");
-            return "true";
+            echo("true");
         }
         else {
-            print_r("pass");
-            return "pass";
+            echo("pass");
         }
     }
     else {
-        print_r("user");
-        return "user";
+        echo("user");
     }
-
-//}
 ?>
-
-<html>
-    <head>
-        <title>Login validation</title>
-    </head>
-
-    <body>
-        <p><?php echo $message; ?>
-    </body>
-</html>
