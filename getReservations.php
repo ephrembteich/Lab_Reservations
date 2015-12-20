@@ -57,7 +57,7 @@
     /*** set the error mode to excptions ***/
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-
+    $mysql_table = $dbh->quote($mysql_table);
     /*** check for reservations ***/
     $result = $dbh->query("SELECT Title, Lab, eventDate, eventStart, eventLength, addedBy
                             FROM $mysql_table
