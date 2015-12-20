@@ -8,7 +8,7 @@
     $year = intval($_POST['year']);
 ***/
 
-    $day = 21;
+    $day = 20;
     $month = 12;
     $year = 2015;
 
@@ -18,9 +18,16 @@
     $dateTime = strtotime("+".$days." days", strtotime($date));
     $date = date("Y-m-d", $dateTime);
 
-//    $dayOfWeek = date("N", mktime(0, 0, 0, $month, $day, $year));
-    $mondayOfWeekTime = strtotime("last Monday", $dateTime);
-    $mondayOfWeek = date("Y-m-d", $mondayOfWeekTime);
+    $dayOfWeek = date("N", mktime(0, 0, 0, $month, $day, $year));
+    print_r($dayOfWeek);
+    print_r('<br>');
+    if ($dayOfWeek != 1){
+        $mondayOfWeekTime = strtotime("last Monday", $dateTime);
+        $mondayOfWeek = date("Y-m-d", $mondayOfWeekTime);
+    }
+    else {
+        $mondayOfWeek = $date;
+    }
 //    print("Today is ".$date);
 //    print("<br>");
 //    print_r($dayOfWeek);
@@ -80,7 +87,7 @@
 //    print_r("<br>");
 //    print_r("<br>");
     $result = json_encode($result);
-//    print_r($result);
+    print_r($result);
 
     return $result;
 
