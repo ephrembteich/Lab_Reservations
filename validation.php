@@ -1,4 +1,6 @@
 <?php
+	session_start();
+	
 	//$name = 'kjk03';
 	//$password = 'kareemisawesome';
     /*** if we are here the data is valid and we can insert it into database ***/
@@ -43,6 +45,8 @@
         $result = $result->fetchAll();
 
         if($result[0]['password'] == $password){
+			//if the credentials are correct then start a session with the users name
+			$_SESSION["user"]=$_POST['name'];
             echo("true");
         }
         else {

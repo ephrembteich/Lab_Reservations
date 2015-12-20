@@ -4,9 +4,11 @@ var requestedTitle = "";
 onload = initializeComponents;
 
 function initializeComponents(){
+	checkUser();
 	$(window).resize(responsive);
 	setURLParameter();
 	initializeCalendar();
+	$("#signout").click(signOut);
 	showWeekly();
 	$("#weekltbtn").click(function(){
 		$("#weekltbtn").css({"backgroundColor":"#97D35A"});
@@ -20,8 +22,25 @@ function initializeComponents(){
 	});
 }
 
+function checkUser(){
+	if(location.search==""){
+		location.replace("index.html");
+	}else{
+		var param = encodeURIComponent(location.search.substring(1));
+		try{
+			$.post( "secured.php", {username: param}).done(function(data) {
+				if(data=="false"){
+					location.replace("index.html");
+				}
+			});
+		}catch(exception){
+			alert(exception+" Request Failed. Please try again.");
+		}
+	}
+}
+
 function setURLParameter(){
-	var sPageURL = window.location.search.substring(1);
+	var sPageURL = location.search.substring(1);
 	$("#username").html("Hello, "+sPageURL+"!");
 }
 
@@ -41,20 +60,23 @@ function showMonthly(){
 	$("#monthlyview").attr("class","");
 }
 
+function signOut(){
+	var user = location.search.substring(1);
+	try{
+		$.post( "deletesession.php", {'delete': user});
+	}catch(exception){
+		alert(exception+" Request Failed. Please try again.");
+	}
+	location.replace("index.html");
+}
+
 function getWeekReservations(lab){
-	currentLab = lab;
-	var params = encodeURIComponent("lab="+lab+"&day="+pressedDate+"&month="+monthNum+"&year="+yearNum);
+	currentLab = encodeURIComponent(lab);
 	
 	try{
-		var async = new XMLHttpRequest();
-		async.onload = function () {
-			if (async.readyState==4 && async.status == 200){
-				fillTable(JSON.parse(async.responseText));
-			}
-		}
-		async.open("post", "getReservations.php", true);
-		async.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		async.send(params);
+		$.post( "getReservations.php", {'lab': lab, 'day': pressedDate, 'month': monthNum, 'year': yearNum}).done(function(data) {
+				fillTable(JSON.parse(data));
+			});
 	}catch(exception){
 		alert(exception+" Request Failed. Please try again.");
 	}
@@ -83,16 +105,14 @@ function prereserve(ele){
 }
 
 function reserve(title){
-	var params = encodeURIComponent("name="+(location.search.substring(1))+"&title="+title+
-		"&lab="+currentLab+"&day="+pressedDate+"&month="+monthNum+"&year="+yearNum);
+	var name = encodeURIComponent(location.search.substring(1));
+	title = encodeURIComponent(title);
+
 	try{
-		var async = new XMLHttpRequest();
-		async.onload = function () {
-			getWeekReservations(currentLab);
-		}
-		async.open("post", "reserve.php", true);
-		async.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		async.send(params);
+		$.post( "reserve.php", {'name': name, 'title': title,'lab': lab, 'day': pressedDate, 
+			'month': monthNum, 'year': yearNum}).done(function(data) {
+				getWeekReservations(currentLab);
+			});
 	}catch(exception){
 		alert(exception+" Request Failed. Please try again.");
 	}
