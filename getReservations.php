@@ -59,7 +59,7 @@
 
     $mysql_table = $dbh->quote($mysql_table);
     /*** check for reservations ***/
-    $result = $dbh->query("SELECT Title, Lab, eventDate, eventStart, eventLength, addedBy
+    $result = $dbh->query("SELECT Title, Lab, eventDate, eventStart, addedBy
                             FROM $mysql_table
                             WHERE eventDate >= '".$mondayOfWeek."'
                             AND eventDate <= date_add('".$mondayOfWeek."', INTERVAL 6 DAY)
@@ -112,7 +112,6 @@
             <td><?=$value['Lab']?></td>
             <td><?=$value['eventDate']?></td>
             <td><?=$value['eventStart']?></td>
-            <td><?=$value['eventLength']?></td>
           </tbody>
           <?php }
         ?>
