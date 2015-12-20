@@ -2,15 +2,14 @@
 
     /*** if we are here the data is valid and we can insert it into database ***/
 
-/***    $lab = intval($_POST['lab']);
+    $lab = intval($_POST['lab']);
     $day = intval($_POST['day']);
     $month = intval($_POST['month']);
     $year = intval($_POST['year']);
-***/
 
-    $day = 20;
-    $month = 12;
-    $year = 2015;
+//    $day = 20;
+//    $month = 12;
+//    $year = 2015;
 
     $days = 0;
 
