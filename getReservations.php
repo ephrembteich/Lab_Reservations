@@ -7,9 +7,10 @@
     $month = intval($_POST['month']);
     $year = intval($_POST['year']);
 
-//    $day = 20;
-//    $month = 12;
-//    $year = 2015;
+//      $day = 20;
+//      $month = 12;
+//      $year = 2015;
+//      $lab = 206;
 
     $days = 0;
 
@@ -18,8 +19,8 @@
     $date = date("Y-m-d", $dateTime);
 
     $dayOfWeek = date("N", mktime(0, 0, 0, $month, $day, $year));
-    print_r($dayOfWeek);
-    print_r('<br>');
+//    print_r($dayOfWeek);
+//    print_r('<br>');
     if ($dayOfWeek != 1){
         $mondayOfWeekTime = strtotime("last Monday", $dateTime);
         $mondayOfWeek = date("Y-m-d", $mondayOfWeekTime);
@@ -57,12 +58,13 @@
     /*** set the error mode to excptions ***/
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $mysql_table = $dbh->quote($mysql_table);
+//    $mysql_table = $dbh->quote($mysql_table);
     /*** check for reservations ***/
     $result = $dbh->query("SELECT Title, Lab, eventDate, eventStart, addedBy
                             FROM $mysql_table
                             WHERE eventDate >= '".$mondayOfWeek."'
                             AND eventDate <= date_add('".$mondayOfWeek."', INTERVAL 6 DAY)
+                            AND Lab = '".$lab."'
                             ORDER BY eventDate ASC");
     $result->execute();
     $result = $result->fetchAll(PDO::FETCH_ASSOC);
