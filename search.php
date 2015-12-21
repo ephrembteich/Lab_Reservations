@@ -14,7 +14,7 @@
 
     /*** mysql password ***/
     $mysql_password = 'mypass';
-	//$mysql_password = 'admin';
+    //$mysql_password = 'admin';
 
     /*** database name ***/
     $mysql_dbname = 'lab_reservation';
