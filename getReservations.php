@@ -4,6 +4,12 @@
     $day = intval($_POST['day']);
     $month = intval($_POST['month']);
     $year = intval($_POST['year']);
+	if($month < 10){
+		$month = "0".$month;
+	}
+	if($day < 10){
+		$day = "0".$day;
+	}
 //      $day = 20;
 //      $month = 12;
 //      $year = 2015;
@@ -16,8 +22,14 @@
 //    print_r($dayOfWeek);
 //    print_r('<br>');
     if ($dayOfWeek != 1){
-        $mondayOfWeekTime = strtotime("last Monday", $dateTime);
-        $mondayOfWeek = date("Y-m-d", $mondayOfWeekTime);
+		if($dayOfWeek == 7){
+			$mondayOfWeekTime = strtotime("next Monday", $dateTime);
+			$mondayOfWeek = date("Y-m-d", $mondayOfWeekTime);
+		}
+		else{
+			$mondayOfWeekTime = strtotime("last Monday", $dateTime);
+			$mondayOfWeek = date("Y-m-d", $mondayOfWeekTime);
+		}
     }
     else {
         $mondayOfWeek = $date;

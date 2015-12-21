@@ -34,7 +34,9 @@
 							<button id="weekltbtn" class="mybtn colorwhite">Weekly view</button>
 							<button id="monthlybtn" class="mybtn colorwhite">Monthly view</button>
 						</th>
-						<th class="width80"><div class="width80"></div></th>
+						<th class="width80">
+							<button id="search" type="button" class="btn bgcolorF49494 colorwhite width70" onClick="promptUser()">Search</button>
+						</th>
 						<th value="MON">MON </th>
 						<th value="TUE">TUE </th>
 						<th value="WED">WED </th>
@@ -88,6 +90,7 @@
 								
 							</table>
 							<div id="monthlyview">Monthly View is not ready yet.</div>
+							<div id="searchtable" class="hidden txtaligncenter">No Results with keyword = '</div>
 						</td>
 					</tr>
 				</tbody>

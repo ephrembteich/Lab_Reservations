@@ -52,13 +52,14 @@ function responsive(){
 
 function showWeekly(){
 	$("#inject").attr("class", "");
-	$("#monthlyview").attr("class","hidden");
 	$("#maintable").attr("class","");
+	$("#monthlyview").attr("class","hidden");
 }
 
 function showMonthly(){
 	$("#inject").attr("class", "maincells");
 	$("#maintable").attr("class","hidden");
+	$("#searchtable").attr("class", "hidden");
 	$("#monthlyview").attr("class","");
 }
 
@@ -102,7 +103,7 @@ function getWeekReservations(lab){
 		$("#btnpressed").attr("id", "");
 		$(event.target).attr("id", "btnpressed");
 	}
-	
+
 	try{
 		$.post( "getReservations.php", {'lab': lab, 'day': pressedDate, 'month': monthNum, 'year': yearNum}).done(function(data) {
 				fillTable(JSON.parse(data));
@@ -122,7 +123,9 @@ function fillTable(data){
 		var td = $("#r"+hour+" [name='"+weekday+"']");
 		var width = td.width();
 		var height = td.height();
-		$("#r"+hour+" [name='"+weekday+"']").append(div);
+		if($("#r"+hour+" [name='"+weekday+"']").html()==""){
+			$("#r"+hour+" [name='"+weekday+"']").append(div);
+		}
 		td.width(width);
 		td.height(height);
 	}
@@ -151,10 +154,65 @@ function reserve(st, day, title){
 	title = encodeURIComponent(title);
 	
 	try{
-		$.post( "reserve.php", {'lab': currentLab, 'day': day,'month': monthNum,'year': yearNum,'startTime': st,'name': name,'title': title}).done(function(data){
+		$.post( "reserve.php", {'lab': currentLab, 'day': day,'month': monthNum,'year': yearNum,'startTime': st,'name': name,'title': title}).done(function(){
 				getWeekReservations($("#btnpressed").html().split(" ")[1]);
 			});
 	}catch(exception){
 		alert(exception+" Request Failed. Please try again.");
 	}
+}
+
+function promptUser(){
+	bootbox.prompt("Input your search keyword.", function(result) {
+		if(result=="" || result==null) return;
+		searchDatabase(result);
+	});
+}
+
+function searchDatabase(keyword){
+	try{
+		$.post( "search.php", {'keyword': keyword}).done(function(data){
+			displaySearch(keyword, JSON.parse(data));
+		});
+	}catch(exception){
+		alert(exception+" Request Failed. Please try again.");
+	}
+}
+
+function displaySearch(keyword, data){
+	$("#inject").attr("class", "maincells");
+	$("#maintable").attr("class","hidden");
+	$("#monthlyview").attr("class","hidden");
+	$("#searchtable").attr("class","");
+	$("#searchtable").empty();
+	
+	if(data.length==0){
+		$("#searchtable").addClass("noresults txtaligncenter");
+		$("#searchtable").html("No results with keyword = \'"+keyword+"\'.");
+		return;
+	}
+	
+	$("#searchtable").css("margin-top", "0");
+	var table = $("<table>");
+	table.attr("id", "searchTable");
+	var tbody = $("<tbody>");
+	var tr = $("<tr>");
+	tr.append($("<th>", {'width': '120px','html': 'Username', 'class': 'thsearch'}));
+	tr.append($("<th>", {'width': '583px','html': 'Topic, keyword = \''+keyword+'\'', 'class': 'thsearch'}));
+	tr.append($("<th>", {'width': '120px','html': 'Lab', 'class': 'thsearch'}));
+	tr.append($("<th>", {'width': '120px','html': 'Date', 'class': 'thsearch'}));
+	tr.append($("<th>", {'width': '120px','html': 'Time', 'class': 'thsearch'}));
+	tbody.append(tr);
+	for(var i=0; i<data.length; i++){
+		var back = (i%2==0)?"back1":"back2";
+		tr = $("<tr>");
+		tr.append($("<td>", {'width': '120px','html': data[i].addedBy, 'class': 'tdsearch '+back}));
+		tr.append($("<td>", {'width': '583px','html': decodeURIComponent(data[i].Title), 'class': 'tdsearch '+back}));
+		tr.append($("<td>", {'width': '120px','html': data[i].Lab, 'class': 'tdsearch '+back}));
+		tr.append($("<td>", {'width': '120px','html': data[i].eventDate, 'class': 'tdsearch '+back}));
+		tr.append($("<td>", {'width': '120px','html': data[i].eventStart, 'class': 'tdsearch '+back}));
+		tbody.append(tr);
+	}
+	table.append(tbody);
+	$("#searchtable").append(table);
 }

@@ -9,6 +9,7 @@
 		$startTime = $_POST['startTime'];
 		$name = $_SESSION['user'];
 		$title = $_POST['title'];
+	
 	//    $lab = 69;
 	//    $day = 25;
 	//    $month = 12;
@@ -17,6 +18,12 @@
 	//    $name = "six09";
 	//    $title = "cmps 278 final";
 		$days = 0;
+		if($month < 10){
+			$month = "0".$month;
+		}
+		if($day < 10){
+			$day = "0".$day;
+		}
 		$date = $year.$month.$day;
 		$dateTime = strtotime("+".$days." days", strtotime($date));
 		$date = date("Y-m-d", $dateTime);
