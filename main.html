@@ -8,6 +8,7 @@
 		<link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="styles/main.css">
 		<script src="scripts/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="scripts/bootbox.min.js"></script>
 		<script src="scripts/bootstrap.min.js"></script>
 		<script type="text/javascript" src="scripts/main.js"></script>
 		<script type="text/javascript" src="scripts/cal.js"></script>
@@ -19,9 +20,9 @@
 			</div>
 			<div id="leftmenu" class="leftmenu">
 				<div class="signout">
-					<button class="btn btn-success" type="submit">Sign Out</button>
+					<button id="signout" class="btn btn-success" type="submit">Sign Out</button>
 				</div>
-				<div class="welcome">Hello, Ephrem Bteich!</div>
+				<div id="username" class="welcome"></div>
 			</div>
 		</div>
 		
@@ -32,6 +33,9 @@
 						<th id="btnth">
 							<button id="weekltbtn" class="mybtn colorwhite">Weekly view</button>
 							<button id="monthlybtn" class="mybtn colorwhite">Monthly view</button>
+						</th>
+						<th class="width80">
+							<button id="search" type="button" class="btn bgcolorF49494 colorwhite width70" onClick="promptUser()">Search</button>
 						</th>
 						<th value="MON">MON </th>
 						<th value="TUE">TUE </th>
@@ -75,114 +79,18 @@
 								</table>
 							</div>
 							<div id="labs">
-							  <button type="button" class="btn bgcolor5BC4EB colorwhite">Bliss 114</button>
-							  <button type="button" class="btn bgcolorF49494 colorwhite">Bliss 208</button>
-							  <button type="button" class="btn bgcolor97D35A colorwhite">Bliss 209</button>
-							  <button type="button" class="btn bgcolorD8A200 colorwhite">Bliss 210</button>
+							  <button id="btnpressed" type="button" class="btn bgcolor5BC4EB colorwhite" onClick="getWeekReservations('114')">Bliss 114</button>
+							  <button type="button" class="btn bgcolorF49494 colorwhite" onClick="getWeekReservations('208')">Bliss 208</button>
+							  <button type="button" class="btn bgcolor97D35A colorwhite" onClick="getWeekReservations('209')">Bliss 209</button>
+							  <button type="button" class="btn bgcolorD8A200 colorwhite" onClick="getWeekReservations('210')">Bliss 210</button>
 							</div>
 						</td>
-						<td id="inject" colspan="6">
+						<td id="inject" colspan="7">
 							<table id="maintable">
-								<tbody>
-									<tr id="8">
-										<td name="monday" class="height38 maincells"></td>
-										<td name="tuesday" class="height38 maincells"></td>
-										<td name="wednesday" class="height38 maincells"></td>
-										<td name="thursday" class="height38 maincells"></td>
-										<td name="friday" class="height38 maincells"></td>
-										<td name="saturday" class="height38 maincells"></td>
-									</tr>
-									<tr id="9">
-										<td name="monday" class="height38 maincells"></td>
-										<td name="tuesday" class="height38 maincells"></td>
-										<td name="wednesday" class="height38 maincells"></td>
-										<td name="thursday" class="height38 maincells"></td>
-										<td name="friday" class="height38 maincells"></td>
-										<td name="saturday" class="height38 maincells"></td>
-									</tr>
-									<tr id="10">
-										<td name="monday" class="height38 maincells"></td>
-										<td name="tuesday" class="height38 maincells"></td>
-										<td name="wednesday" class="height38 maincells"></td>
-										<td name="thursday" class="height38 maincells"></td>
-										<td name="friday" class="height38 maincells"></td>
-										<td name="saturday" class="height38 maincells"></td>
-									</tr>
-									<tr id="11">
-										<td name="monday" class="height38 maincells"></td>
-										<td name="tuesday" class="height38 maincells"></td>
-										<td name="wednesday" class="height38 maincells"></td>
-										<td name="thursday" class="height38 maincells"></td>
-										<td name="friday" class="height38 maincells"></td>
-										<td name="saturday" class="height38 maincells"></td>
-									</tr>
-									<tr id="12">
-										<td name="monday" class="height38 maincells"></td>
-										<td name="tuesday" class="height38 maincells"></td>
-										<td name="wednesday" class="height38 maincells"></td>
-										<td name="thursday" class="height38 maincells"></td>
-										<td name="friday" class="height38 maincells"></td>
-										<td name="saturday" class="height38 maincells"></td>
-									</tr>
-									<tr id="1">
-										<td name="monday" class="height38 maincells"></td>
-										<td name="tuesday" class="height38 maincells"></td>
-										<td name="wednesday" class="height38 maincells"></td>
-										<td name="thursday" class="height38 maincells"></td>
-										<td name="friday" class="height38 maincells"></td>
-										<td name="saturday" class="height38 maincells"></td>
-									</tr>
-									<tr id="2">
-										<td name="monday" class="height38 maincells"></td>
-										<td name="tuesday" class="height38 maincells"></td>
-										<td name="wednesday" class="height38 maincells"></td>
-										<td name="thursday" class="height38 maincells"></td>
-										<td name="friday" class="height38 maincells"></td>
-										<td name="saturday" class="height38 maincells"></td>
-									</tr>
-									<tr id="3">
-										<td name="monday" class="height38 maincells"></td>
-										<td name="tuesday" class="height38 maincells"></td>
-										<td name="wednesday" class="height38 maincells"></td>
-										<td name="thursday" class="height38 maincells"></td>
-										<td name="friday" class="height38 maincells"></td>
-										<td name="saturday" class="height38 maincells"></td>
-									</tr>
-									<tr id="4">
-										<td name="monday" class="height38 maincells"></td>
-										<td name="tuesday" class="height38 maincells"></td>
-										<td name="wednesday" class="height38 maincells"></td>
-										<td name="thursday" class="height38 maincells"></td>
-										<td name="friday" class="height38 maincells"></td>
-										<td name="saturday" class="height38 maincells"></td>
-									</tr>
-									<tr id="5">
-										<td name="monday" class="height38 maincells"></td>
-										<td name="tuesday" class="height38 maincells"></td>
-										<td name="wednesday" class="height38 maincells"></td>
-										<td name="thursday" class="height38 maincells"></td>
-										<td name="friday" class="height38 maincells"></td>
-										<td name="saturday" class="height38 maincells"></td>
-									</tr>
-									<tr id="6">
-										<td name="monday" class="height38 maincells"></td>
-										<td name="tuesday" class="height38 maincells"></td>
-										<td name="wednesday" class="height38 maincells"></td>
-										<td name="thursday" class="height38 maincells"></td>
-										<td name="friday" class="height38 maincells"></td>
-										<td name="saturday" class="height38 maincells"></td>
-									</tr>
-									<tr id="7">
-										<td name="monday" class="height38 maincells"></td>
-										<td name="tuesday" class="height38 maincells"></td>
-										<td name="wednesday" class="height38 maincells"></td>
-										<td name="thursday" class="height38 maincells"></td>
-										<td name="friday" class="height38 maincells"></td>
-										<td name="saturday" class="height38 maincells"></td>
-									</tr>
-								</tbody>
+								
 							</table>
 							<div id="monthlyview">Monthly View is not ready yet.</div>
+							<div id="searchtable" class="hidden txtaligncenter">No Results with keyword = '</div>
 						</td>
 					</tr>
 				</tbody>
