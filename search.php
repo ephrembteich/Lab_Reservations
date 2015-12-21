@@ -42,4 +42,4 @@
 
     $result = json_encode($result);
     print_r($result);
-    ?>
+?>
