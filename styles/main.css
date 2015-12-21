@@ -285,6 +285,14 @@ body{
 	border-bottom: 1px dotted #C1D2DB;
 }
 
+.divcells{
+	font-size: 14px;
+	padding: 2px;
+	text-align: center;
+	color: #636F98;
+	background-color: #FBFBFB;
+}
+
 #r7 > td{
 	border-bottom: none;
 }
