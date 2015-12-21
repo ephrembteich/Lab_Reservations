@@ -297,6 +297,10 @@ body{
 	border-bottom: none;
 }
 
+#btnpressed{
+	box-shadow: 0 0 0 2px #8F9EAC;
+}
+
 #schedtable > thead{
 	background-color: white;
 	border-bottom: 1px solid #C1D2DB;

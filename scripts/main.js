@@ -105,7 +105,6 @@ function getWeekReservations(lab){
 	
 	try{
 		$.post( "getReservations.php", {'lab': lab, 'day': pressedDate, 'month': monthNum, 'year': yearNum}).done(function(data) {
-				console.debug(data);
 				fillTable(JSON.parse(data));
 			});
 	}catch(exception){
@@ -116,7 +115,7 @@ function getWeekReservations(lab){
 function fillTable(data){
 	for(var i=0; i<data.length; i++){
 		var weekday = data[i].dayOfWeek;
-		var title = data[i].Title;
+		var title = decodeURIComponent(data[i].Title);
 		var hour = parseInt((data[i].eventStart).split(":")[0]);
 		var name = data[i].addedBy;
 		var div = $("<div>", {"html": name+", "+title, "class": "divcells"});
@@ -139,7 +138,7 @@ function prereserve(){
 		bootbox.alert("The lab is reserved at this time.");
 	}else{
 		bootbox.prompt("Input the title of this reservation.", function(result) {
-			if(result=="") return;
+			if(result=="" || result==null) return;
 			var st = parseInt(target.parent().attr("id").substring(1));
 			var day = parseInt(colName[1].split("-")[1]);
 			reserve(st, day, result);
@@ -150,11 +149,9 @@ function prereserve(){
 function reserve(st, day, title){
 	var name = encodeURIComponent(location.search.substring(1));
 	title = encodeURIComponent(title);
-	yearNum = parseInt(yearNum);
-	monthNum = parseInt(monthNum);
-
+	
 	try{
-		$.post( "reserve.php", {'lab': currentLab, 'day': day,'month': monthNum,'year': yearNum,'startTime': st,'name': name,'title': title}).done(function(){
+		$.post( "reserve.php", {'lab': currentLab, 'day': day,'month': monthNum,'year': yearNum,'startTime': st,'name': name,'title': title}).done(function(data){
 				getWeekReservations($("#btnpressed").html().split(" ")[1]);
 			});
 	}catch(exception){
