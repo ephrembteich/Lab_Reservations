@@ -4,8 +4,8 @@
     $day = intval($_POST['day']);
     $month = intval($_POST['month']);
     $year = intval($_POST['year']);
-    $startTime = $_POST(['startTime']);
-    $name = intval($_POST['name']);
+    $startTime = $_POST(['startTime']);//problem: it is not of the format 08:00:00
+    $name = intval($_POST['name']);//problem: it is not being added to the record in the database (only a 0)
     $title = $_POST(['title']);
 
 //    $lab = 69;
