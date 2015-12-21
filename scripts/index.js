@@ -70,8 +70,4 @@ function validateCredentials(){
 	}else{
 		return false;
 	}
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 9f35206a00d4362270a298faab2a3eaa88fa6962

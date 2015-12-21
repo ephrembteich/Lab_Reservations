@@ -147,19 +147,11 @@ function updateWeekdays(target){
 			weekday.eq(i+1).html(weekday.eq(i+1).attr("value")+" "+monthNum+"-"+p.eq(i).html());
 		}else{
 			weekday.eq(i+1).html(weekday.eq(i+1).attr("value"));
-<<<<<<< HEAD
 		}
 		
 		if($("#inputmonthyear").html().split(",")[0]==monthNames[todaysMonth-1] && p.eq(i).html()==todaysDate){
 			weekday.eq(i+1).html(weekday.eq(i+1).html()+" (TODAY)");
 		}
-=======
-		}
-		
-		if($("#inputmonthyear").html().split(",")[0]==monthNames[todaysMonth-1] && p.eq(i).html()==todaysDate){
-			weekday.eq(i+1).html(weekday.eq(i+1).html()+" (TODAY)");
-		}
->>>>>>> 9f35206a00d4362270a298faab2a3eaa88fa6962
 			
 		if(p.eq(i).html()==target.html()){
 			if(!flag){
