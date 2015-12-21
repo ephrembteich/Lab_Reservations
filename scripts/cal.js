@@ -24,23 +24,31 @@ var numbDays = 0;
 var calendarString = "";
 var daysInMonth = [31,28,31,30,31,30,31,31,30,31,30,31];
 var monthNames = ["January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"
-];
-var days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+  "July", "August", "September", "October", "November", "December"];
+var days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+var pressedDate = todaysDate;
+var flag = false;
 
 function changedate(buttonpressed) {
+	initializeMainTable();
 	$("tr").remove(".rmv");
 	$("#daytbr").attr("class", "");
 	$("#tbr").attr("class", "daycolor2 centerVH width32 height32");
 	$("#daytbr").find("span").attr("class", "hidden");
 	
-	if (buttonpressed == "prevmo") monthNum--;
-	else if (buttonpressed == "nextmo") monthNum++;
-	else  if (buttonpressed == "return") { 
+	if (buttonpressed == "prevmo"){
+		monthNum--;
+		flag = true;
+	}else if (buttonpressed == "nextmo"){ 
+		monthNum++;
+		flag = true;
+	}else  if (buttonpressed == "return") { 
 		monthNum = todaysMonth;
 		yearNum = todaysYear;
+		pressedDate = todaysDate;
+		flag = false;
 	}
-
+	
 	if (monthNum == 0) {
 		monthNum = 12;
 		yearNum--;
@@ -55,6 +63,7 @@ function changedate(buttonpressed) {
 	firstDay = firstDate.getDay() + 1;
 	createCalendar();
 	responsive();
+	getWeekReservations($("#btnpressed").html().split(" ")[1]);
 	return;
 }
 
@@ -77,7 +86,6 @@ function createCalendar() {
 			for (var x = 1; x <= 7; x++) {
 				if (daycounter+1 > daysInMonth[monthNum-1]){
 					bool=false;
-					//break;
 				}
 				daycounter = (thisDate - firstDay)+1;
 				thisDate++;
@@ -103,6 +111,7 @@ function createCalendar() {
 }
 
 function changeColor(){
+	initializeMainTable();
 	if($("#tdcoloring")){
 		$("#tdcoloring").attr("id", "");
 	}
@@ -112,11 +121,14 @@ function changeColor(){
 	}
 	
 	$(event.target).attr("id", "tdcoloring");
+	pressedDate = $(event.target).html();
 	var dayIndex = $(event.target).index();
 	var day = $("#caltable tr").eq(1).find("td").eq(dayIndex);
 	day.attr("class", day.attr("class")+" color60C4E9");
 	day.attr("id", "tbr");
+	flag = false;
 	updateWeekdays($(event.target));
+	getWeekReservations($("#btnpressed").html().split(" ")[1]);
 }
 
 function updateWeekdays(target){
@@ -132,15 +144,21 @@ function updateWeekdays(target){
 	var weekday = $("#weekdays th");
 	for(var i=1; i<p.length; i++){
 		if(p.eq(i).html()!=""){
-			weekday.eq(i).html(weekday.eq(i).attr("value")+" "+monthNum+"-"+p.eq(i).html());
+			weekday.eq(i+1).html(weekday.eq(i+1).attr("value")+" "+monthNum+"-"+p.eq(i).html());
 		}else{
-			weekday.eq(i).html(weekday.eq(i).attr("value"));
+			weekday.eq(i+1).html(weekday.eq(i+1).attr("value"));
 		}
+		
+		if($("#inputmonthyear").html().split(",")[0]==monthNames[todaysMonth-1] && p.eq(i).html()==todaysDate){
+			weekday.eq(i+1).html(weekday.eq(i+1).html()+" (TODAY)");
+		}
+			
 		if(p.eq(i).html()==target.html()){
-			weekday.eq(i).html(weekday.eq(i).html()+" (TODAY)");
-			weekday.eq(i).attr("class", weekday.eq(i).attr("class")+" color60C4E9");
-			weekday.eq(i).attr("id", "daytbr");
-			$("#8 [name="+(days[weekday.eq(i).index()-1])+"]").attr("id", "tbrborder");
+			if(!flag){
+				weekday.eq(i+1).attr("class", weekday.eq(i+1).attr("class")+" color60C4E9");
+				weekday.eq(i+1).attr("id", "daytbr");
+				$("#r8 [name='"+(days[weekday.eq(i).index()-1])+"']").attr("id", "tbrborder");
+			}
 		}
 	}
 }
